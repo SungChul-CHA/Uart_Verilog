@@ -39,11 +39,11 @@ module uart_rx (
     always @ (*) begin
         case (c_state)
             IDLE_ST: begin 
-                rx_busy = 0;
-                en = 0;
+                rx_busy = 1'b0;
+                en = 1'b0;
                 n_state = START_ST;
             end
-            START_ST: begin rx_busy = 1; n_state = BIT0_ST; end
+            START_ST: begin rx_busy = 1'b1; n_state = BIT0_ST; end
             BIT0_ST: begin uart_rx_data[0] = uart_rxd; n_state = BIT1_ST; end
             BIT1_ST: begin uart_rx_data[1] = uart_rxd; n_state = BIT2_ST; end
             BIT2_ST: begin uart_rx_data[2] = uart_rxd; n_state = BIT3_ST; end
@@ -57,18 +57,21 @@ module uart_rx (
         endcase
     end
     
-    always @ (posedge clk_b, posedge rst) begin
-        if (rst) c_state <= 0;
-        else if (clk_b & ~c_state) c_state <= n_state;
+    always @ (posedge clk, posedge rst) begin
+        if (rst) begin
+            c_state <= IDLE_ST;
+            uart_rx_data <= 8'b000000;
+        end
+        else if (clk_b == 1'b1 & c_state != IDLE_ST) c_state <= n_state;
     end
     
     always @ (negedge uart_rxd) begin
         if (c_state == IDLE_ST) begin
-            en <= 1;
+            en <= 1'b1;
             c_state <= START_ST;
         end
     end
 
-    gen_counter_en #(868) gen_cnt_en_inst (clk, rst, en, clk_b);
+    gen_counter_en #(.SIZE(868)) gen_cnt_en_inst (.clk(clk), .rst(rst), .en(en), .counter_en(clk_b));
 
 endmodule
