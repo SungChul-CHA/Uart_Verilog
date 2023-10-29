@@ -50,8 +50,8 @@ module uart_tx (
         end
     end
             
-    assign uart_start_pulse = uart_tx_en; //for simulation
-//    debounce debounce_inst (clk, rst, uart_tx_en, , uart_start_pulse); //for kit
+//    assign uart_start_pulse = uart_tx_en; //for simulation
+    debounce debounce_inst (clk, rst, uart_tx_en, , uart_start_pulse); //for kit
     gen_counter_en #(.SIZE(868)) gen_cnt_en_inst (.clk(clk), .rst(rst), .en(en), .counter_en(clk_b));
 
 endmodule
