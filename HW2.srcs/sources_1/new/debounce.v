@@ -10,7 +10,7 @@
 module debounce(clk, rst, btn_in, btn_out, btn_out_pulse);
 
     parameter SIZE = 16; //if pressed for 1/clk*2^(SIZE-1)sec, it can be debounced. 5.46ms for 6MHz
-    parameter BTN_WIDTH = 5;
+    parameter BTN_WIDTH = 1;
     
     input clk, rst;
     input [BTN_WIDTH-1:0] btn_in;
