@@ -38,16 +38,13 @@ module uart_tx (
         endcase
     end
     
-    always @ (posedge clk, posedge rst) begin
+    always @ (posedge clk, posedge rst, posedge uart_start_pulse) begin
         if (rst) c_state <= IDLE_ST;
-        else if (clk_b & c_state != IDLE_ST) c_state <= n_state;
-    end
-
-    always @ (posedge uart_start_pulse) begin
-        if (c_state == IDLE_ST) begin 
+        else if (uart_start_pulse == 1'b1 & c_state == IDLE_ST) begin
             en <= 1;
             c_state <= START_ST;
         end
+        else if (clk_b & c_state != IDLE_ST) c_state <= n_state;
     end
             
 //    assign uart_start_pulse = uart_tx_en; //for simulation
