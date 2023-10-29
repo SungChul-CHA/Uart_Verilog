@@ -7,9 +7,8 @@ module uart_tx (
     output reg uart_txd 	    //송신 데이터
     );
     
-    reg [3:0] c_state, n_state;
-    wire clk_b, uart_start_pulse;
-    
+    wire uart_start_pulse, clk_b;
+    reg [3:0] c_state, n_state;   
     
     parameter IDLE_ST = 4'd0, START_ST = 4'd1, BIT0_ST = 4'd2,
     BIT1_ST = 4'd3, BIT2_ST = 4'd4, BIT3_ST =4'd5, BIT4_ST = 4'd6,
@@ -39,12 +38,15 @@ module uart_tx (
     
     always @ (posedge clk, posedge rst) begin
         if (rst) c_state <= 0;
-        else if (clk_b) c_state <= n_state;        
+        else if (clk_b & c_state != IDLE_ST) c_state <= n_state;
     end
 
+    always @ (posedge uart_start_pulse) begin
+        if (c_state == IDLE_ST) c_state <= START_ST;
+    end
             
     assign uart_start_pulse = uart_tx_en; //for simulation
 //    debounce debounce_inst (clk, rst, uart_tx_en, , uart_start_pulse); //for kit
-    gen_counter_en #(868) gen_cnt_en_inst (clk, rst, clk_b);
+    gen_counter_en #(.SIZE(868)) gen_cnt_en_inst (.clk(clk), .rst(rst), .counter_en(clk_b));
 
 endmodule
