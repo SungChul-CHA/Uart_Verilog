@@ -11,12 +11,12 @@
 ## Debouncer
 
 **set**
-`assign set = (btn_in_d[1] != btn_in_d[2]) ? 1 : 0; //determine when to reset counter`
+`assign set = (btn_in_d[1] != btn_in_d[2]) ? 1 : 0; //determine when to reset counter`<br>
 -> 디바운싱 중이면 1, 아니면 0
 <br>
 
 **o**
-`reg [SIZE-1:0] o = {SIZE{1'b0}}; //counter is initialized to 0`
+`reg [SIZE-1:0] o = {SIZE{1'b0}}; //counter is initialized to 0`<br>
 -> 1bit 짜리 16개 배열 : clk마다 1씩 더하면 clk마다 1이 위쪽 배열로 올라감
 
 ```Verilog
@@ -57,6 +57,6 @@ end
 <br>
 
 **btn_out_pulse**
-`assign btn_out_pulse = btn_in_d[3] & (~btn_in_d[4]); //debounced button pulse out`
+`assign btn_out_pulse = btn_in_d[3] & (~btn_in_d[4]); //debounced button pulse out`<br>
 -> btn_in_d[3] = 1이고 btn_in_d[4] = 0 이면 btn_out_pulse = 1 나머지는 0
 ![pulse 생성기](.//study/pulse.png)
