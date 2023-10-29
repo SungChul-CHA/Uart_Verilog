@@ -57,20 +57,18 @@ module uart_rx (
         endcase
     end
     
-    always @ (posedge clk, posedge rst) begin
+    always @ (posedge clk, posedge rst, negedge uart_rxd) begin
         if (rst) begin
             c_state <= IDLE_ST;
             uart_rx_data <= 8'b000000;
         end
-        else if (clk_b == 1'b1 & c_state != IDLE_ST) c_state <= n_state;
-    end
-    
-    always @ (negedge uart_rxd) begin
-        if (c_state == IDLE_ST) begin
+        else if (~uart_rxd & c_state == IDLE_ST) begin
             en <= 1'b1;
             c_state <= START_ST;
         end
+        else if (clk_b == 1'b1 & c_state != IDLE_ST) c_state <= n_state;
     end
+
 
     gen_counter_en #(.SIZE(868)) gen_cnt_en_inst (.clk(clk), .rst(rst), .en(en), .counter_en(clk_b));
 
