@@ -10,6 +10,7 @@
 module gen_counter_en #(parameter SIZE = 6000000) (
     input clk,
     input rst,
+    input en,
     output counter_en
     );
     
@@ -17,9 +18,9 @@ module gen_counter_en #(parameter SIZE = 6000000) (
     
     always @(posedge clk or posedge rst) begin
         if (rst) o <= 0;
-        else
-        if (o == SIZE-1) o <= 0;
-        else o <= o + 1;
+        else if (en)
+            if (o == SIZE-1) o <= 0;
+            else o <= o + 1;
     end
         
         assign counter_en = (o == SIZE-1) ? 1'b1 : 1'b0;

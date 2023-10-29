@@ -9,6 +9,7 @@ module uart_tx (
     
     wire uart_start_pulse, clk_b;
     reg [3:0] c_state, n_state;   
+    reg en;
     
     parameter IDLE_ST = 4'd0, START_ST = 4'd1, BIT0_ST = 4'd2,
     BIT1_ST = 4'd3, BIT2_ST = 4'd4, BIT3_ST =4'd5, BIT4_ST = 4'd6,
@@ -20,6 +21,7 @@ module uart_tx (
             IDLE_ST: begin 
                 uart_txd = 1;
                 tx_busy = 0;
+                en = 0;
                 n_state = START_ST;
             end
             START_ST: begin uart_txd = 0; tx_busy = 1; n_state = BIT0_ST; end
@@ -42,11 +44,12 @@ module uart_tx (
     end
 
     always @ (posedge uart_start_pulse) begin
+        en <= 1;
         if (c_state == IDLE_ST) c_state <= START_ST;
     end
             
     assign uart_start_pulse = uart_tx_en; //for simulation
 //    debounce debounce_inst (clk, rst, uart_tx_en, , uart_start_pulse); //for kit
-    gen_counter_en #(.SIZE(868)) gen_cnt_en_inst (.clk(clk), .rst(rst), .counter_en(clk_b));
+    gen_counter_en #(.SIZE(868)) gen_cnt_en_inst (.clk(clk), .rst(rst), .en(en), .counter_en(clk_b));
 
 endmodule
