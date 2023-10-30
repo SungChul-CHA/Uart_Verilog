@@ -38,7 +38,7 @@ initial begin
     uart_tx_en = 0;
     uart_rxd = 0;
     uart_tx_data = 0;
-    #42;
+    #400;
     rst = 0;
     uart_tx_en = 1;
     uart_tx_data = 8'b01000101;

@@ -59,7 +59,7 @@ module uart_rx (
     end
     
     always @ (posedge clk, posedge rst) begin
-        if (rst) uart_rx_data <= 8'b10000000;
+        if (rst) uart_rx_data <= 8'b00000000;
         else if (rx_read)
             case (c_state)
                 BIT0_ST: uart_rx_data[0] <= uart_rxd;

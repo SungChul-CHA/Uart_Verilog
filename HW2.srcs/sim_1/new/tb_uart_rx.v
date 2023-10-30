@@ -36,7 +36,7 @@ initial begin   // uart_rxd = 1->0->(LSB)10110001(MSB)->1->1
     uart_rxd = 1;
     #7;
     rst = 0;
-    #100;
+    #3000;
     uart_rxd = 0;
     #8680;
     uart_rxd = 1;
