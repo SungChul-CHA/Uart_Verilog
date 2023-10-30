@@ -11,7 +11,8 @@ module gen_counter_en #(parameter SIZE = 6000000) (
     input clk,
     input rst,
     input en,
-    output counter_en
+    output counter_en,
+    output rx_read
     );
     
     reg [31:0] o;
@@ -24,5 +25,6 @@ module gen_counter_en #(parameter SIZE = 6000000) (
     end
         
         assign counter_en = (o == SIZE-1) ? 1'b1 : 1'b0;
+        assign rx_read = (o == (SIZE - 1) / 2) ? 1'b1 : 1'b0;
         
 endmodule
