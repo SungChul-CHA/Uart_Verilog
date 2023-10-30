@@ -35,7 +35,9 @@ else if (o[SIZE-1] == 0) o <= o + 1; //stable input time is not yet met
 
 ```Verilog
 @ posedge clk
-btn_in_d[3] : set != 1 and o[15] != 0 -> btn_in_d[2]
+if (set == 1) o <= 0; //reset counter when input is changing
+else if (o[SIZE-1] == 0) o <= o + 1; //stable input time is not yet met
+else btn_in_d[3] <= btn_in_d[2]; //stable input time is met, catch the btn and retain.
 ```
 
 -> 디바운싱 중이 아니고
