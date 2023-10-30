@@ -24,7 +24,7 @@ else if (o[SIZE-1] == 0) o <= o + 1; //stable input time is not yet met
 ```
 
 -> 디바운싱 아니고
--> SIZE = 16 -> 100MHz clk이 2^16-1번 지나면 -> 327.7us 지나면 아래쪽 else 구문으로
+-> SIZE = 16 -> 100MHz clk이 2^<sup>16-1</sup>번 지나면 -> 327.7us 지나면 아래쪽 else 구문으로
 <br>
 
 `btn_in_d[1] <= btn_in;`
