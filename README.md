@@ -15,7 +15,7 @@
 
 **o**
 `reg [SIZE-1:0] o = {SIZE{1'b0}}; //counter is initialized to 0`<br>
--> 1bit 짜리 16개 배열 : clk마다 1씩 더하면 clk마다 1이 위쪽 배열로 올라감
+-> SIZE bit 짜리 SIZE개 배열 : clk마다 1씩 더하면 clk마다 1이 위쪽 배열로 올라감
 
 ```Verilog
 @posedge clk
@@ -24,7 +24,7 @@ else if (o[SIZE-1] == 0) o <= o + 1; //stable input time is not yet met
 ```
 
 -> 디바운싱 아니고
--> SIZE = 16 -> 100MHz clk이 16번 지나면 -> 160ns 지나면 아래쪽 else 구문으로
+-> SIZE = 16 -> 100MHz clk이 2^16-1번 지나면 -> 32.8us 지나면 아래쪽 else 구문으로
 <br>
 
 `btn_in_d[1] <= btn_in;`
