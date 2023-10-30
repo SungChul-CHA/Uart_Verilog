@@ -56,8 +56,8 @@ module uart_tx (
     
     assign tx_busy = (c_state == IDLE_ST) ? 1'b0 : 1'b1;
 
-    assign uart_start_pulse = uart_tx_en; //for simulation
-//    debounce debounce_inst (clk, rst, uart_tx_en, , uart_start_pulse); //for kit
+//    assign uart_start_pulse = uart_tx_en; //for simulation
+    debounce debounce_inst (clk, rst, uart_tx_en, , uart_start_pulse); //for kit
     gen_counter_en #(.SIZE(868)) gen_cnt_en_inst (.clk(clk), .rst(rst), .en(tx_busy), .counter_en(clk_b), .rx_read());
 
 endmodule

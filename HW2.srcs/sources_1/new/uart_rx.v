@@ -41,9 +41,9 @@ module uart_rx (
         else c_state <= n_state;
     end
     
-    always @ (c_state) begin
+    always @ (*) begin
         case (c_state)
-            IDLE_ST: if(uart_rxd) n_state = START_ST; else n_state = IDLE_ST;
+            IDLE_ST: if(~uart_rxd) n_state = START_ST; else n_state = IDLE_ST;
             START_ST: if(clk_b) n_state = BIT0_ST; else n_state = START_ST;
             BIT0_ST: if(clk_b) n_state = BIT1_ST; else n_state = BIT0_ST;
             BIT1_ST: if(clk_b) n_state = BIT2_ST; else n_state = BIT1_ST;
