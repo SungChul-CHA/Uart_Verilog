@@ -3,6 +3,8 @@
 ## Sources
 
 - [Uart Tx Verilog Code](https://m.blog.naver.com/tlsrka649/222065404652)
+- [Uart Code](https://nandland.com/uart-serial-port-module/)
+- [Uart Verilog Code](https://github.com/ben-marshall/uart#impl_top)
 
 ---
 
