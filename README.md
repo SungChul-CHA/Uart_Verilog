@@ -8,12 +8,12 @@
 
 ## Debouncer
 
-**set**
+**set**<br>
 `assign set = (btn_in_d[1] != btn_in_d[2]) ? 1 : 0; //determine when to reset counter`<br>
 -> 디바운싱 중이면 1, 아니면 0
 <br>
 
-**o**
+**o**<br>
 `reg [SIZE-1:0] o = {SIZE{1'b0}}; //counter is initialized to 0`<br>
 -> SIZE bit 짜리 SIZE개 배열 : clk마다 1씩 더함.
 
