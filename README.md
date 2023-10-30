@@ -57,6 +57,7 @@ end
 <br>
 
 **btn_out_pulse**
+
 `assign btn_out_pulse = btn_in_d[3] & (~btn_in_d[4]); //debounced button pulse out`<br>
 -> btn_in_d[3] = 1이고 btn_in_d[4] = 0 이면 btn_out_pulse = 1 나머지는 0
 ![pulse 생성기](.//study/pulse.png)
