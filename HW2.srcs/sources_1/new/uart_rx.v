@@ -36,7 +36,7 @@ module uart_rx (
     BIT5_ST = 4'd7, BIT6_ST = 4'd8, BIT7_ST = 4'd9, STOP_ST = 4'd10,
     BAUD_RATE = 115200, DATA_BIT = 8, PARITY_BIT = 0, STOP_BIT = 1;
     
-    always @ (*) begin
+    always @ (c_state) begin
         case (c_state)
             IDLE_ST: begin 
                 rx_busy = 1'b0;
@@ -60,7 +60,7 @@ module uart_rx (
     always @ (posedge clk, posedge rst, negedge uart_rxd) begin
         if (rst) begin
             c_state <= IDLE_ST;
-            uart_rx_data <= 8'b10101010;
+            uart_rx_data <= 8'b10000000;
         end
         else if (~uart_rxd & c_state == IDLE_ST) begin
             en <= 1'b1;

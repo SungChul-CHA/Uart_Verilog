@@ -52,8 +52,3 @@ module uart_tx (
     gen_counter_en #(.SIZE(868)) gen_cnt_en_inst (.clk(clk), .rst(rst), .en(en), .counter_en(clk_b));
 
 endmodule
-
-
-
-
-

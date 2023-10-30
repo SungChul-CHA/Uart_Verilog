@@ -1,0 +1,7 @@
+0.7
+2020.2
+Oct 14 2022
+05:20:55
+C:/Xilinx/DigitalSystem/HW2/HW2.sim/sim_1/impl/func/xsim/tb_uart_tx_func_impl.v,1698631120,verilog,,C:/Xilinx/DigitalSystem/HW2/HW2.srcs/sim_1/new/tb_uart_tx.v,,debounce;gen_counter_en;glbl;uart_top;uart_tx,,,,,,,,
+C:/Xilinx/DigitalSystem/HW2/HW2.srcs/sim_1/new/tb_uart_top.v,1698556511,verilog,,,,tb_uart_top,,,,,,,,
+C:/Xilinx/DigitalSystem/HW2/HW2.srcs/sim_1/new/tb_uart_tx.v,1698554295,verilog,,,,tb_uart_tx,,,,,,,,
