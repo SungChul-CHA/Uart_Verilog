@@ -8,14 +8,14 @@
 
 ## Debouncer
 
-**set**
+**set**<br>
 `assign set = (btn_in_d[1] != btn_in_d[2]) ? 1 : 0; //determine when to reset counter`<br>
 -> 디바운싱 중이면 1, 아니면 0
 <br>
 
-**o**
+**o**<br>
 `reg [SIZE-1:0] o = {SIZE{1'b0}}; //counter is initialized to 0`<br>
--> 1bit 짜리 16개 배열 : clk마다 1씩 더하면 clk마다 1이 위쪽 배열로 올라감
+-> SIZE bit 짜리 SIZE개 배열 : clk마다 1씩 더함.
 
 ```Verilog
 @posedge clk
@@ -24,7 +24,7 @@ else if (o[SIZE-1] == 0) o <= o + 1; //stable input time is not yet met
 ```
 
 -> 디바운싱 아니고
--> SIZE = 16 -> 100MHz clk이 16번 지나면 -> 160ns 지나면 아래쪽 else 구문으로
+-> SIZE = 16 -> 100MHz clk이 2^<sup>16-1</sup>번 지나면 -> 327.7us 지나면 아래쪽 else 구문으로
 <br>
 
 `btn_in_d[1] <= btn_in;`
@@ -35,7 +35,9 @@ else if (o[SIZE-1] == 0) o <= o + 1; //stable input time is not yet met
 
 ```Verilog
 @ posedge clk
-btn_in_d[3] : set != 1 and o[15] != 0 -> btn_in_d[2]
+if (set == 1) o <= 0; //reset counter when input is changing
+else if (o[SIZE-1] == 0) o <= o + 1; //stable input time is not yet met
+else btn_in_d[3] <= btn_in_d[2]; //stable input time is met, catch the btn and retain.
 ```
 
 -> 디바운싱 중이 아니고
@@ -55,6 +57,7 @@ end
 <br>
 
 **btn_out_pulse**
+
 `assign btn_out_pulse = btn_in_d[3] & (~btn_in_d[4]); //debounced button pulse out`<br>
 -> btn_in_d[3] = 1이고 btn_in_d[4] = 0 이면 btn_out_pulse = 1 나머지는 0
 ![pulse 생성기](.//study/pulse.png)
