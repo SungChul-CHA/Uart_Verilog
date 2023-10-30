@@ -15,7 +15,7 @@
 
 **o**
 `reg [SIZE-1:0] o = {SIZE{1'b0}}; //counter is initialized to 0`<br>
--> SIZE bit 짜리 SIZE개 배열 : clk마다 1씩 더하면 clk마다 1이 위쪽 배열로 올라감
+-> SIZE bit 짜리 SIZE개 배열 : clk마다 1씩 더함.
 
 ```Verilog
 @posedge clk
