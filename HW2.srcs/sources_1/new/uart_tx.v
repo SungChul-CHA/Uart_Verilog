@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// uart_tx #(.BAUD_RATE(), .DATA_BIT(), .PARITY_BIT(), .STOP_BIT()) u (.clk(), .rst(), .uart_tx_en(), .uart_tx_data(), .tx_busy(), .uart_txd());
+// uart_tx #(.BAUD_RATE(), .DATA_BIT(), .PARITY_BIT(), .STOP_BIT()) u (.clk(), .rst(), .uart_tx_en(), .uart_VD(), .uart_tx_data(), .tx_busy(), .uart_txd());
 // BUAD_RATE = 110, 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 38400, 56000, 57600, 115200
 // DATA_BIT : 5 ~ 9, PARITY_BIT = 0 : ¾øÀ½, 1 : È¦¼ö, 2 : Â¦¼ö, STOP_BIT = 1, 2
 // Maker : CHA
