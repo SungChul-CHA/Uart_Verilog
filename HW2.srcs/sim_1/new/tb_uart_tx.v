@@ -60,6 +60,3 @@ end
 uart_tx dut (clk, rst, uart_tx_en, uart_tx_data, tx_busy, uart_txd);
 
 endmodule
-
-
-

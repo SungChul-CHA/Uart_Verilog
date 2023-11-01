@@ -10,6 +10,7 @@ set_property PACKAGE_PIN T18 [get_ports rst]
 set_property IOSTANDARD LVCMOS25 [get_ports uart_tx_en]
 set_property PACKAGE_PIN P16 [get_ports uart_tx_en]
 
+
 # tx_data
 set_property IOSTANDARD LVCMOS25 [get_ports {uart_tx_data[*]}]
 set_property PACKAGE_PIN M15 [get_ports {uart_tx_data[7]}] 
