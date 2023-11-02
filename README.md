@@ -1,5 +1,21 @@
 # Uart Module on ZedBoard Zynq Evaluation and Development Kit
 
+## To Do
+
+- [ ] uart_tx 안됨
+- [ ] uart_VD 다시 보기
+- [ ] 데이터 들어오면 버퍼에 저장하고 연속으로 들어오면 START_ST 로 넘어가게
+- [ ] case 문 써서 CLKS_PER_BIT 바꾸기
+
+---
+
+## Branches
+
+- master : 과제
+- advance : 재사용 가능한 UART 모듈
+
+---
+
 ## Sources
 
 - [Uart Tx Verilog Code](https://m.blog.naver.com/tlsrka649/222065404652)
@@ -65,5 +81,7 @@ end
 ![pulse 생성기](.//study/pulse.png)
 
 ---
+
+## ASCII CODE Table
 
 ![ASCII Table](.//study/ASCII.png)
