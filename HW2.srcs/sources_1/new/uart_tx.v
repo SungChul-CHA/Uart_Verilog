@@ -66,6 +66,19 @@ module uart_tx
             endcase
     end
     
+    always @ (c_state, data_index) begin 
+        case (c_state)
+            IDLE_ST: uart_txd <= 1'b1; 
+            START_ST: uart_txd <= 1'b0;
+            DATA_ST: uart_txd <= data[data_index];
+            PARITY_ST:
+                if(PARITY_BIT == 1) uart_txd <= ~(^data);
+                else uart_txd <= ^data;
+            STOP_ST: uart_txd <= 1'b1;
+            default: uart_txd <= 1'b1;
+        endcase
+    end
+    
     always @ (posedge clk, posedge rst) begin
         if (rst) c_state <= IDLE_ST;
         else if(uart_VD) c_state <= START_ST;
@@ -75,21 +88,6 @@ module uart_tx
     always @ (posedge clk, posedge rst) begin
         if (rst) data <= 0;
         else if (c_state == START_ST) data <= uart_tx_data;
-    end
-    
-    always @ (posedge clk, posedge rst) begin
-        if (rst) uart_txd <= 1'b1; 
-        else 
-            case (c_state)
-                IDLE_ST: uart_txd <= 1'b1; 
-                START_ST: uart_txd <= 1'b0;
-                DATA_ST: uart_txd <= data[data_index];
-                PARITY_ST:
-                    if(PARITY_BIT == 1) uart_txd <= ~(^data);
-                    else uart_txd <= ^data;
-                STOP_ST: uart_txd <= 1'b1;
-                default: uart_txd <= 1'b1;
-            endcase
     end
     
     always @ (posedge clk, posedge rst) begin

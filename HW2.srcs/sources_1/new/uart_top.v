@@ -10,7 +10,7 @@
 
 module uart_top
     #(
-    parameter BAUD_RATE = 9600, DATA_BIT = 8,
+    parameter BAUD_RATE = 115200, DATA_BIT = 8,
     PARITY_BIT = 0, STOP_BIT = 1
     )
     (
