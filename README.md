@@ -1,5 +1,11 @@
-# Uart Module on ZedBoard Zynq Evaluation and Development Kit
+# Uart Module
 
+## Target Board
+ZedBoard Zynq Evaluation and Development Kit
+Zynq-7000 SoC
+
+ ---
+ 
 ## To Do
 
 - [ ] uart_tx 안됨
