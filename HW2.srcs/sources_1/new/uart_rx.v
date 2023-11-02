@@ -28,8 +28,19 @@ module uart_rx
     reg [1:0] stop_index = 0;
     reg data_finish, stop_finish;
     
-    localparam CLK_FREQUENCY = 100_000_000;
-    localparam CLKS_PER_BIT = CLK_FREQUENCY / BAUD_RATE;   
+   localparam CLKS_PER_BIT         // CLK Frequency = 100MHz  
+        = (BAUD_RATE == 110) ? 909091 :
+        (BAUD_RATE == 300) ? 333333 : 
+        (BAUD_RATE == 600) ? 166667 : 
+        (BAUD_RATE == 1200) ? 83333 : 
+        (BAUD_RATE == 4800) ? 20833 : 
+        (BAUD_RATE == 9600) ? 10417 : 
+        (BAUD_RATE == 14400) ? 6944 : 
+        (BAUD_RATE == 19200) ? 5206 : 
+        (BAUD_RATE == 28800) ? 3472 : 
+        (BAUD_RATE == 38400) ? 2604 : 
+        (BAUD_RATE == 56000) ? 1786 : 
+        (BAUD_RATE ==57600) ? 1735 : 868;
     localparam IDLE_ST = 3'd0, START_ST = 3'd1, 
     DATA_ST = 3'd2, PARITY_ST = 3'd3,STOP_ST = 3'd4;
     
