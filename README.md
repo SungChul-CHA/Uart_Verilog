@@ -1,18 +1,19 @@
 # Uart Module
 
 ## Target Board
+
 ZedBoard Zynq Evaluation and Development Kit
 <br>
 Zynq-7000 SoC
 
- ---
- 
+---
+
 ## To Do
 
 - [ ] uart_tx 안됨
 - [ ] uart_VD 다시 보기
 - [ ] 데이터 들어오면 버퍼에 저장하고 연속으로 들어오면 START_ST 로 넘어가게
-- [ ] case 문 써서 CLKS_PER_BIT 바꾸기
+- [x] case 문 써서 CLKS_PER_BIT 바꾸기
 
 ---
 
