@@ -2,6 +2,7 @@
 
 ## Target Board
 ZedBoard Zynq Evaluation and Development Kit
+<br>
 Zynq-7000 SoC
 
  ---
