@@ -41,13 +41,14 @@ initial begin
     #400;
     rst = 0;
     uart_tx_en = 1;
+    #10
+    uart_tx_en = 0;
     uart_tx_data = 8'b01000101;
     #430000;
-    uart_tx_en = 0;
-    #10
+    uart_tx_data = 8'b01000001;
     uart_tx_en = 1;
     #4;
-    uart_tx_data = 8'b01000001;
+    uart_tx_en = 0;
     #430000;
     $stop;
 end
@@ -56,7 +57,7 @@ always @ (*) begin
     uart_rxd = uart_txd;
 end
 
-uart_top dut (clk, rst, uart_tx_en, uart_tx_data, uart_txd, uart_rxd, uart_rx_data);
+uart_top #(115200, 8, 0, 1) dut (clk, rst, uart_tx_en, uart_tx_data, uart_txd, uart_rxd, uart_rx_data);
 
 endmodule
 

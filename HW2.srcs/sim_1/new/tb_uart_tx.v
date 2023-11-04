@@ -51,12 +51,12 @@ initial begin
     #7;
     rst = 0;
     uart_tx_data = 8'b01000110;
-    #300000;
+    #89000;
     uart_tx_data = 8'b10101101;
-    #7000;
+    #89000;
     $stop;
 end
 
-uart_tx #(115200, 8, 0, 1) dut (clk, rst, uart_tx_en, , uart_tx_data, tx_busy, uart_txd);
+uart_tx #(115200, 6, 1, 2) dut (clk, rst, uart_tx_en, uart_VD, uart_tx_data, tx_busy, uart_txd);
 
 endmodule

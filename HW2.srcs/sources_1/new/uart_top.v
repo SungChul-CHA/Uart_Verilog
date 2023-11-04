@@ -10,7 +10,7 @@
 
 module uart_top
     #(
-    parameter BAUD_RATE = 115200, DATA_BIT = 8,
+    parameter BAUD_RATE = 9600, DATA_BIT = 8,
     PARITY_BIT = 0, STOP_BIT = 1
     )
     (
@@ -19,12 +19,12 @@ module uart_top
     
 	// tx
 	input uart_tx_en, 
-	input [7:0] uart_tx_data, 
+	input [DATA_BIT-1:0] uart_tx_data, 
 	output uart_txd,
 	
 	//rx 
 	input uart_rxd, 
-	output [7:0] uart_rx_data     
+	output [DATA_BIT-1:0] uart_rx_data     
 );    
 
 wire uart_VD;

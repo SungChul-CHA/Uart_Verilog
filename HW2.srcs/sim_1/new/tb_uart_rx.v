@@ -38,30 +38,30 @@ initial begin   // uart_rxd = 1->0->(LSB)10110001(MSB)->1->1
     rst = 0;
     #3000;
     uart_rxd = 0;
-    #8680;
+    #104170;
     uart_rxd = 1;
-    #8680;
+    #104170;
     uart_rxd = 0;
-    #8680;
+    #104170;
     uart_rxd = 1;
-    #8680;
+    #104170;
     uart_rxd = 1;
-    #8680;
+    #104170;
     uart_rxd = 0;
-    #8680;
+    #104170;
     uart_rxd = 0;
-    #8680;
+    #104170;
     uart_rxd = 0;
-    #8680;
+    #104170;
     uart_rxd = 1;
-    #8680;
+    #104170;
     uart_rxd = 1;
-    #8680;
+    #104170;
     uart_rxd = 1;
-    #10;
+    #104170;
     $stop;
 end
 
-uart_rx dut (clk, rst, uart_rxd, rx_busy, uart_rx_data);
+uart_rx #(9600, 8, 0, 1) dut (clk, rst, uart_rxd, rx_busy, uart_VD, uart_rx_data);
 
 endmodule

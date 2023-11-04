@@ -117,7 +117,7 @@ module uart_rx
     
     always @ (posedge clk, posedge rst) begin
         if (rst) uart_rx_data <= 0;
-        else if (rx_read) uart_rx_data[data_index] <= uart_rxd;
+        else if (c_state == DATA_ST & rx_read) uart_rx_data[data_index] <= uart_rxd;
     end
     
     assign rx_busy = (c_state == IDLE_ST) ? 1'b0 : 1'b1;
