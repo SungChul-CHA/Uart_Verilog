@@ -19,7 +19,7 @@ Zynq-7000 SoC
 
 ## Branches
 
-- master : 과제
+
 - advance : 재사용 가능한 UART 모듈
 
 ---
