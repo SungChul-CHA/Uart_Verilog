@@ -10,7 +10,7 @@ Zynq-7000 SoC
 
 ## To Do
 
-- [ ] uart_tx 안됨
+- [x] uart_tx 고침 + uart_rx 버그 발견, 고침
 - [ ] uart_VD 다시 보기
 - [ ] 데이터 들어오면 버퍼에 저장하고 연속으로 들어오면 START_ST 로 넘어가게
 - [x] case 문 써서 CLKS_PER_BIT 바꾸기
